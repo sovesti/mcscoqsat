@@ -80,7 +80,7 @@ intoResult False = "UNSAT"
 
 checkFile :: FilePath -> Bool -> IO (Maybe Bool)
 checkFile path expected = do
-    solved <- timeout 800 $ solveFile path
+    solved <- timeout 100 $ solveFile path
     putStr $ case solved of
         Nothing -> path ++ ": timeout\n"
         Just b -> path 
