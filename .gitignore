@@ -1,0 +1,12 @@
+*.aux
+*.cache
+*.conf
+*.d
+*.hi
+*.lock
+*.o
+*.vo
+*.vok
+*.vos
+*.glob
+.stack-work

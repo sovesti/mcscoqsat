@@ -1,0 +1,2 @@
+post-all:: Main.hs CoqSolver.hs
+	stack run
