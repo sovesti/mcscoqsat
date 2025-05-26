@@ -6,6 +6,7 @@ import Text.ParserCombinators.Parsec
 import Text.Parsec.Char
 import Control.Monad
 import CoqSolver
+import System.Environment
 import System.FilePath
 import System.IO
 import System.Directory
@@ -105,7 +106,17 @@ solveFolder path expected = do
             ++ "failures: " ++ countOf results (Just False) ++ "\n"
             ++ "timeouts: " ++ countOf results Nothing ++ "\n"
 
-main :: IO ()
-main = do
+runAll :: IO ()
+runAll = do
     solveFolder "./tests/sat" True
     solveFolder "./tests/unsat" False
+
+main :: IO ()
+main = do
+    args <- getArgs
+    case args of 
+        [] -> runAll
+        (cnf : _) -> do
+            solved <- solveFile cnf
+            putStr $ intoResult solved
+    
